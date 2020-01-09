@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>List</title>
+  </head>
+  <body>
+    <div>
+      <p style="display: flex; align-items: center; justify-content: space-around;">Listing all the details here.</p>
+    </div>
+    <div>
+      <table border="solid black 1px">
+        <thead>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Label</th>          
+          <th>Price</th>
+          <th>Details</th>
+          <th>Update</th>
+        </thead>
+        <% for(var i=0; i < data.length; i++) { %>
+          <tr>
+            <td><%= data[i].id %></td>
+            <td><%= data[i].name %></td>
+            <td><%= data[i].category %></td>
+            <td><%= data[i].label %></td>
+            <td><%= data[i].price %></td>
+            <td><a href="/dish/<%=data[i].id%>">Details</a></td>
+            <td><a href="/dish/<%=data[i].id%>/update">Update</a></td>
+          </tr>
+        <%}%>
+      </table>
+      <a href="/add-dish">Add Dish</a>
+    </div>
+    <%- include("footer") %>
+  </body>
+</html>

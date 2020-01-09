@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>
+      <%= data.dish.name%>
+    </title>
+  </head>
+  <body style="padding-right: 10%;">
+    <div>
+      <div margin = 0.5em;>
+        <h3><%= data.dish.name%></h3>
+        <p><b>Category</b> : <%= data.dish.category%></p>
+        <p><b>Label</b> : <%= data.dish.label%></p>
+        <p><b>Price</b> : $<%= data.dish.price%></p>
+        <p><b>Description</b> : <%= data.dish.description%></p>
+      </div>
+      <div>
+        <h4>Comments</h4>
+        <div style="margin-left:0%" >
+          <% for (let i=0,len=data.comments.length;i<len;i++) { %>
+            <div style="margin-left:2%; width:50%">
+              <p><%=data.comments[i].comment%></p>
+              <p style="text-align:right; margin-right: 20%;">-<%=data.comments[i].author%></p>
+              <p style="text-align:right; margin-right: 20%;">(<%=moment(data.comments[i].date).format('Do MMMM, YYYY');%>)</p>
+              <form action="/dish/delete-comment/<%= data.comments[i].id%>/<%= data.comments[i].dishId%>" method="post">
+                <button>Delete</button>
+              </form>
+              <hr>
+            </div>
+          <%}%>
+        </div>
+        <a href = "/dish/<%=data.dish.id%>/add-comment"><button>Add Comment</button></a>
+      </div>
+    </div>
+    <%- include("footer") %>
+  </body>
+</html>

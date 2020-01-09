@@ -1,0 +1,21 @@
+{
+  "name": "mysql-with-nodejs",
+  "version": "1.0.0",
+  "description": "Learning crud with nodejs",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "moment": "^2.24.0",
+    "mysql": "^2.17.1",
+    "mysql2": "^2.1.0",
+    "uuid": "^3.3.3"
+  }
+}

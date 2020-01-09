@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Update Dish</title>
+  </head>
+  <body>
+    <p>Update dish here.</p>
+    <form action="/dish/<%=data.id%>/update" method="post">
+      <label>
+        Name:<%= data.id%>
+      </label>
+      <br />
+      <input type="text" required name="name" value="<%= data.name%>" />
+      <br />
+      <label>
+        Category:
+      </label>
+      <br />
+      <input type="text" required name="category" value="<%= data.category%>" />
+      <br />
+      <label>
+        Label:
+      </label>
+      <br />
+      <input type="text" required name="label" value="<%= data.label%>" />
+      <br />
+      <label>
+        Price:
+      </label>
+      <br />
+      <input
+        type="number"
+        required
+        name="price"
+        value="<%=data.price %>"
+        step="0.01"
+      />
+      <br />
+      <button type="submit">Save</button>
+    </form>
+    <%- include("footer") %>
+  </body>
+</html>

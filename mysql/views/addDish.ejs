@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>Add Dish</title>
+  </head>
+  <body>
+    <div>
+      <p>Add a dish here.</p>
+    </div>
+    <div>
+      <form method="post" action="/add-dish">
+        <label>Name</label><br />
+        <input type="text" required name="name" /><br /><br />
+        <label>Category</label><br />
+        <input type="text" required name="category" /><br /><br />
+        <label>Price</label><br />
+        <input type="text" required name="price" /><br /><br />
+        <label>Label</label><br />
+        <input type="text" required name="label" /><br /><br />
+        <label>Description</label><br />
+        <textarea type="text" required name="description"></textarea><br /><br />
+        <button>Add</button>
+      </form>
+    </div>
+  </body>
+</html>
