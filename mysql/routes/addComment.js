@@ -11,7 +11,6 @@ router.get("/", function(req, res, next) {
 router.post("/", function(req, res) {
   let id = uuid.v1();
   let { body, params } = req;
-  console.log(req.body, req.params);
   let query = `insert into comments(id,dishId, rating, comment, author) values(?,?,?,?,?)`
   conn.query(query,[id,params.id, body.rating,body.comment,body.name],(err,result)=>{
     if(err)

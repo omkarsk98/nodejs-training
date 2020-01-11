@@ -1,29 +1,31 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongo = require("./connection")
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
-const list = require("./routes/listDishes");
-const dishDetails = require("./routes/dishDetails");
+const PORT = 3000;
+
+const home = require('./routes/home');
+const listDishes = require('./routes/listDishes');
+const dishDetails = require('./routes/dishDetails');
 const addComment = require("./routes/addComment");
 const updateDish = require("./routes/updateDish");
 const addDish = require("./routes/addDish");
 const deleteComment = require("./routes/deleteComment");
 
-app.get("/", (req, res) => {
-  res.render("home");
+mongo.connectToServer(function (err, client) {
+  if (err) console.log(err);
+  // start the rest of your app here
 });
 
-app.use("/list", list);
+app.use("/", home);
+app.use('/list', listDishes);
 app.use("/add-dish", addDish);
-app.use("/dish/:id", dishDetails);
-app.use("/dish/:id/add-comment", addComment);
+app.use('/dish-details/:id', dishDetails);
+app.use('/dish/:id/add-comment', addComment);
 app.use("/dish/:id/update", updateDish);
 app.use("/dish/delete-comment/:id/:dishId", deleteComment);
 
-
-const PORT = 3005;
-app.listen(PORT, () => {
-  console.log("App running on http://localhost:3000");
-});
+app.listen(PORT, () => console.info(`REST API running on port ${PORT}`))

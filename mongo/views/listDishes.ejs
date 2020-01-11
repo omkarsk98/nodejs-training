@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <title>Dishes</title>
+</head>
+
+<body>
+    <div>
+        <h3>Listing all the dishes.</h3>
+    </div>
+    <div>
+        <p>Results</p>
+    </div>
+    <div>
+        <table border="solid black 1px">
+            <thead>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Label</th>
+                <th>Price</th>
+                <th>Details</th>
+                <th>Update</th>
+            </thead>
+            <% for(dish of dishes) { %>
+            <tr>
+                <td><%= dish.name %></td>
+                <td><%= dish.category %></td>
+                <td><%= dish.label %></td>
+                <td><%= dish.price %></td>
+                <td><a href="/dish-details/<%=dish.id%>">Details</a></td>
+                <td><a href="/dish/<%=dish.id%>/update">Update</a></td>
+            </tr>
+            <%}%>
+            </table>
+            <a href="/add-dish">Add Dish</a>
+          </div>
+    </body>
+</html>

@@ -3,12 +3,12 @@ const router = express.Router({ mergeParams: true });
 const { conn } = require("../connection");
 const uuid = require("uuid");
 
-router.get("/", function(req, res, next) {
+router.get("/", function (req, res, next) {
   res.render("addDish");
 });
 
-router.post("/", function(req, res) {
-  let { body} = req;
+router.post("/", function (req, res) {
+  let { body } = req;
   let id = uuid.v1();
   let query = `insert into dishes (id,name, category, label, price, featured, description) values(?,?,?,?,?,?,?)`;
   conn.query(
