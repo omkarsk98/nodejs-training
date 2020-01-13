@@ -1,21 +1,26 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
 const moment = require('moment');
-const { getDish } = require("../modules/getDishes");
-const { getComments } = require("../modules/getComments");
+const mongo = require("../connection");
 
 router.get("/", function (req, res) {
     let id = req.params.id;
-
-    Promise.all([getDish(id), getComments(id)])
+    const db = mongo.getDb();
+    db.collection("dishes")
+        .aggregate([
+            { $match: { "id": parseInt(id) } },
+            {
+                $lookup:
+                    { from: "comments", localField: "id", foreignField: "dishId", as: "comments" }
+            }
+        ])
+        .toArray()
         .then(result => {
-            const details = result.shift().shift();
-            details.comments = result.shift();
-            res.render("dishDetails", { details: details, moment: moment })
+            res.render("dishDetails", { details: result.shift(), moment: moment })
         })
         .catch(error => {
-            console.log(error)
-        })
+            console.error(error)
+        });
 })
 
 module.exports = router;
