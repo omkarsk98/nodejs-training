@@ -1,2 +1,4 @@
 mysql/node_modules
 mongo/node_modules
+Objects/node_modules
+momentjs/node_modules
