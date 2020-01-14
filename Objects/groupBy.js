@@ -1,5 +1,5 @@
 const _ = require('lodash')
-
+const { vehicles } = require("./data")
 let expected = JSON.stringify({
     "audi": {
         "car": [
@@ -33,18 +33,7 @@ let expected = JSON.stringify({
     }
 })
 
-let vehicles = [
-    { name: "audi", type: "car" },
-    { name: "audi", type: "bus" },
-    { name: "audi", type: "truck" },
-    { name: "ferrari", type: "car" },
-    { name: "bmw", type: "car" },
-    { name: "ferrari", type: "van" },
-    { name: "audi", type: "van" },
-    { name: "bmw", type: "van" }
-]
-
-let byTypeL = _.groupBy(vehicles, function (i) { return i.name })
+let byTypeL = _.groupBy(vehicles, 'name')
 // console.log("By Type", byTypeL)
 let resL = _.forEach(byTypeL, function (value, key) {
     byTypeL[key] = _.groupBy(value, function (i) { return i.type })
